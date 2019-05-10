@@ -6,11 +6,11 @@ if (isset($_POST['save'])) {
 	'".$_POST['ftgltransaksi']."',
 	'".$_POST['ftotal']."',
 	'".$_POST['fidcustomer']."')";
-	$proses=mysql_query($query_insert);
+	$proses=mysqli_query($con,$query_insert);
 	if($proses){
 		header('location:view_transaksi_keluar.php');
 	}else{
-		echo mysql_error();
+		echo mysqli_error();
 	}
 
 

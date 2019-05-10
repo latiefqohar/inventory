@@ -9,13 +9,13 @@ if (isset($_POST['login']) ? $_POST['login']:''){
 		echo ("<script type='text/javascript'>
 			alert('isi data dengan lengkap');document.location='javascript:history.back(1)';</script>");
 	}else{
-		$query_check=mysql_query("select * from login where username='$username' and password='$convert'");
-		$data=mysql_fetch_array($query_check);
+		$query_check=mysqli_query($con,"select * from login where username='$username' and password='$convert'");
+		$data=mysqli_fetch_array($query_check);
 		if ($username==$data['username'] && $convert==$data['password']) {
 			$_SESSION['username']=$data['username'];
 			$_SESSION['level']=$data['level'];
 			$_SESSION['status']=$data['status'];
-			header('location:home.php');
+			header('location:view_transaksi.php');
 		}else{
 			echo ("<script type='text/javascript'>
 			alert('username dan password salah');document.location='javascript:history.back(1)';</script>");

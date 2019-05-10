@@ -2,7 +2,7 @@
 session_start();
 include('koneksi.php');
 include('header.php');
-$query_view=mysql_query("select * from customer");
+$query_view=mysqli_query($con,"select * from customer");
 ?>
 <table border="1" class="table table-bordered">
 	<tr>
@@ -16,7 +16,7 @@ $query_view=mysql_query("select * from customer");
 	</tr>
 	<?php
 	$no=1;
-	while ($data=mysql_fetch_array($query_view)) {?>
+	while ($data=mysqli_fetch_array($query_view)) {?>
 	<tr>
 		<td><?php echo $no++;?></td>
 		<td><?php echo $data['nama'];?></td>

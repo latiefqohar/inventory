@@ -6,17 +6,17 @@ $query_edit="update customer set nama='".$_POST['nama']."',
  no_hp='".$_POST['nohp']."',
  status='".$_POST['status']."'
  where id_customer='".$_POST['id']."'";
- $proses=mysql_query($query_edit);
+ $proses=mysqli_query($con,$query_edit);
 
   if ($proses) {
  	header('location:view_customer.php');
  }else{
- 		echo mysql_error();
+ 		echo mysqli_error();
  } 
  }
 
-$select_data=mysql_query("select * from customer where id_customer='".$_GET['id-customer']."'");
-$data=mysql_fetch_array($select_data);
+$select_data=mysqli_query($con,"select * from customer where id_customer='".$_GET['id-customer']."'");
+$data=mysqli_fetch_array($select_data);
  ?>
  <form method="post">
  	<table>

@@ -1,6 +1,6 @@
 <?php 
 include('koneksi.php');
-$query_view=mysql_query("select * from suplier");
+$query_view=mysqli_query($con,"select * from suplier");
 
  ?>
  <table border="1">
@@ -12,7 +12,7 @@ $query_view=mysql_query("select * from suplier");
  	</tr>
  	<?php 
  	$no=1;
- 	while ($data=mysql_fetch_array($query_view)) { ?>
+ 	while ($data=mysqli_fetch_array($query_view)) { ?>
  	<tr>
  		<td><?php echo $no++; ?></td>
  		<td><?php echo $data['nama'] ?></td>

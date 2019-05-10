@@ -13,15 +13,15 @@ $pembayaran=$_POST['pembayaran'];
 		exit();
 	}
 	
-	$query_bayar=mysql_query("update transaksi_masuk set bayar=bayar+'".$pembayaran."' where kode_transaksi='".$_POST['kode_transaksi']."'");
+	$query_bayar=mysqli_query($con,"update transaksi_masuk set bayar=bayar+'".$pembayaran."' where kode_transaksi='".$_POST['kode_transaksi']."'");
 
 		if ($query_bayar) {
-			$insert=mysql_query("INSERT into history_bayar(kode_transaksi,jumlah,tangal) VALUES ('".$_POST['kode_transaksi']."',
+			$insert=mysqli_query($con,"INSERT into history_bayar(kode_transaksi,jumlah,tangal) VALUES ('".$_POST['kode_transaksi']."',
 				'".$pembayaran."','".$_POST['tgl_pembayaran']."')");
 			}
 			header('location:view_transaksi_masuk.php');
 		}else{
-			echo mysql_error();
+			echo mysqli_error();
 		}
 		
 
@@ -43,8 +43,8 @@ include('header.php');
 			<td>Kode Transaksi</td>
 			<td><select name="kode_transaksi" id="id_transaksi" class="form-control">
 				<option value="">--Pilih kode Transaksi--</option>
-				<?php $tm=mysql_query("select * from transaksi_masuk");
-				while ($data=mysql_fetch_array($tm)) { ?>
+				<?php $tm=mysqli_query($con,"select * from transaksi_masuk");
+				while ($data=mysqli_fetch_array($tm)) { ?>
 				<option value="<?php echo $data['kode_transaksi'];?>"><?php echo $data['kode_transaksi'];?></option>
 				<?php }?>
 			</select>

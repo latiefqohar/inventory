@@ -7,17 +7,17 @@ $query_edit="update barang set nama_barang='".$_POST['nama_barang']."',
  qty='".$_POST['qty']."',
  harga='".$_POST['harga']."'
  where id_barang='".$_POST['idbarang']."'";
- $proses=mysql_query($query_edit);
+ $proses=mysqli_query($con,$query_edit);
   if ($proses) {
  	header('location:view_barang.php');
  }else{
- 		echo mysql_error();
+ 		echo mysqli_error();
  } 
  }
 
 
- $select_data=mysql_query("select * from barang where id_barang='".$_GET['id_barang']."'");
- $data=mysql_fetch_array($select_data);
+ $select_data=mysqli_query($con,"select * from barang where id_barang='".$_GET['id_barang']."'");
+ $data=mysqli_fetch_array($select_data);
 
 
  ?>

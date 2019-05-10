@@ -2,7 +2,7 @@
 session_start();
 include('koneksi.php');
 include('header.php');
-$sql=mysql_query('select * from transaksi_masuk where status_user=1');
+$sql=mysqli_query($con,'select * from transaksi_masuk where status_user=1');
  ?>
  <table border="0" class="table table-striped">
  	<tr>
@@ -16,14 +16,14 @@ $sql=mysql_query('select * from transaksi_masuk where status_user=1');
  	</tr>
  	<?php
  	 $no=1;
- 	while ($data=mysql_fetch_array($sql)) {?>
+ 	while ($data=mysqli_fetch_array($sql)) {?>
  	<tr>
 	 	 <td><?php echo $no++; ?></td>
 	 	 <td><?php echo $data['kode_transaksi']; ?></td>
 	 	 <td><?php echo $data['tgl_transaksi']; ?></td>
 	 	 <td><?php echo $data['total']; ?></td>
 	 	 <td><?php echo $data['grand_total']; ?></td>
-	 	 <?php $qsuplier=mysql_fetch_array(mysql_query("SELECT * FROM suplier WHERE id_suplier='".$data['id_suplier']."'")) ?>
+	 	 <?php $qsuplier=mysqli_fetch_array(mysqli_query($con,"SELECT * FROM suplier WHERE id_suplier='".$data['id_suplier']."'")) ?>
 	 	 <td><?php echo $qsuplier['nama']; ?></td>
 	 	 <td><a href="">Detail</a></td>
 	 	 <td><a href="control_buatpo.php?idpr=<?php echo $data['id_transaksi']; ?>">Buat PO</a></td>

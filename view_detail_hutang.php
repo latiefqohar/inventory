@@ -3,9 +3,9 @@ session_start();
 include ('koneksi.php');
 include ('header.php');
 
-$query=mysql_query("SELECT id_suplier, sum(grand_total) as hutang, sum(bayar) as bayar, sum(grand_total)-sum(bayar) as sisa from transaksi_masuk GROUP BY id_suplier");
+$query=mysqli_query($con,"SELECT id_suplier, sum(grand_total) as hutang, sum(bayar) as bayar, sum(grand_total)-sum(bayar) as sisa from transaksi_masuk GROUP BY id_suplier");
 
-$querycus=mysql_query("SELECT id_customer, sum(grand_total) as hutang, sum(bayar) as bayar, sum(grand_total)-sum(bayar) as sisa from transaksi_keluar GROUP BY id_customer");
+$querycus=mysqli_query($con,"SELECT id_customer, sum(grand_total) as hutang, sum(bayar) as bayar, sum(grand_total)-sum(bayar) as sisa from transaksi_keluar GROUP BY id_customer");
 
 
 
@@ -28,11 +28,11 @@ $querycus=mysql_query("SELECT id_customer, sum(grand_total) as hutang, sum(bayar
  	$no=1 ;
  	$a=0;
  	$b=0;
- 	while ($data=mysql_fetch_array($query)) { ?>
+ 	while ($data=mysqli_fetch_array($query)) { ?>
  		<tr>
  			<td><?php echo $no++ ?></td>
  			<td><?php
- 			$qsup=mysql_fetch_array(mysql_query("SELECT * from suplier where id_suplier='".$data['id_suplier']."'"));
+ 			$qsup=mysqli_fetch_array(mysqli_query($con,"SELECT * from suplier where id_suplier='".$data['id_suplier']."'"));
  			 
  			echo $qsup['nama'];
  			 ?></td>
@@ -65,11 +65,11 @@ $querycus=mysql_query("SELECT id_customer, sum(grand_total) as hutang, sum(bayar
  	</tr>
  	<?php
  	$no=1 ;
- 	while ($datacus=mysql_fetch_array($querycus)) { ?>
+ 	while ($datacus=mysqli_fetch_array($querycus)) { ?>
  		<tr>
  			<td><?php echo $no++ ?></td>
  			<td><?php
- 			$qcus=mysql_fetch_array(mysql_query("SELECT * from customer where id_customer='".$datacus['id_customer']."'"));
+ 			$qcus=mysqli_fetch_array(mysqli_query($con,"SELECT * from customer where id_customer='".$datacus['id_customer']."'"));
  			 
  			echo $qcus['nama'];
  			 ?></td>

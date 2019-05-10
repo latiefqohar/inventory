@@ -3,7 +3,7 @@ session_start();
 include('koneksi.php');
 
 if (isset($_POST['edit'])) {
-	$query_edit=mysql_query("update transaksi_keluar set tanggal_transaksi='".$_POST['tgl_transaksi']."',
+	$query_edit=mysqli_query($con,"update transaksi_keluar set tanggal_transaksi='".$_POST['tgl_transaksi']."',
 		grand_total='".$_POST['grand_total']."',
 		id_customer='".$_POST['id_customer']."' where id_transaksi_keluar='".$_POST['id']."'");
 
@@ -20,21 +20,21 @@ if (isset($_POST['edit'])) {
 			$harga_jual=$data_harga_jual[$i];
 			$subtotal=$data_subtotal[$i];
 			$idtransaksidetail=$data_id[$i];
-			$query_edit_detail=mysql_query("update transaksi_detail_keluar set id_barang='".$barang."',
+			$query_edit_detail=mysqli_query($con,"update transaksi_detail_keluar set id_barang='".$barang."',
 				qty='".$qty."',	harga_jual='".$harga_jual."',
 				subtotal='".$subtotal."' where id_transaksi_detail_keluar='".$idtransaksidetail."'");
 			
 		}
 		header('location:view_transaksi.php');
 	}else{
-		echo mysql_error();
+		echo mysqli_error();
 	}
 
 }
 include('header.php');
 
-$q=mysql_query("select * from transaksi_keluar where id_transaksi_keluar='".$_GET['idtransaksi']."'");
-$f=mysql_fetch_array($q);
+$q=mysqli_query($con,"select * from transaksi_keluar where id_transaksi_keluar='".$_GET['idtransaksi']."'");
+$f=mysqli_fetch_array($q);
 
 
 ?>
@@ -52,8 +52,8 @@ $f=mysql_fetch_array($q);
 			<td>Customer</td>
 			<td><select name="id_customer" class="form-control" >
 				<option value="">--pilih Customer -- </option>
-				<?php $cs=mysql_query("select * from customer");
-				while ($data=mysql_fetch_array($cs)) { ?>
+				<?php $cs=mysqli_query($con,"select * from customer");
+				while ($data=mysqli_fetch_array($cs)) { ?>
 					<option value="<?php echo $data['id_customer'];?>" <?php if($data['id_customer']==$f['id_customer']){echo "selected";} ?>><?php echo $data['nama'];?></option>
 				<?php }?>
 			</select>
@@ -76,9 +76,9 @@ $f=mysql_fetch_array($q);
 	</tr>
 	<?php  
 	
-	$querydetail=mysql_query('select * from transaksi_detail_keluar where id_transaksi_keluar="'.$f['id_transaksi_keluar'].'"');
+	$querydetail=mysqli_query($con,'select * from transaksi_detail_keluar where id_transaksi_keluar="'.$f['id_transaksi_keluar'].'"');
 	$i=0;
-	while($data=mysql_fetch_array($querydetail)) { 
+	while($data=mysqli_fetch_array($querydetail)) { 
 		$i++;
 		
 		?>
@@ -87,8 +87,8 @@ $f=mysql_fetch_array($q);
 			<td>
 				<select id='id_barang_<?php echo $i;?>' name="id_barang[]"  class="form-control">
 					<option value="">--pilih Barang -- </option>
-					<?php $cs=mysql_query("select * from barang");
-					while ($databarang=mysql_fetch_array($cs)) { ?>
+					<?php $cs=mysqli_query($con,"select * from barang");
+					while ($databarang=mysqli_fetch_array($cs)) { ?>
 						<option value="<?php echo $data['id_barang'];?>" <?php if($databarang['id_barang']==$data['id_barang']){echo "selected";} ?>><?php echo $databarang['nama_barang'];?></option>
 					<?php }?>
 				</select>

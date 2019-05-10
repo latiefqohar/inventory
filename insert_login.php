@@ -2,7 +2,7 @@
 include ('koneksi.php');
 if(isset($_POST['simpan'])) {
 $passwordmd5=md5($_POST['password']);
-$query_input=mysql_query("insert into login (username, password, level, status) values('".$_POST['username']."',
+$query_input=mysqli_query($con,"insert into login (username, password, level, status) values('".$_POST['username']."',
 '".$passwordmd5."',
 '".$_POST['level']."',
 '".$_POST['status']."')");
@@ -10,7 +10,7 @@ $query_input=mysql_query("insert into login (username, password, level, status) 
 if ($query_input) {
 	header("location:view_login.php");
 }else{
-	echo mysql_error();
+	echo mysqli_error();
  }
  }
 

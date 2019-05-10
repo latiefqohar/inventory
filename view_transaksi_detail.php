@@ -1,6 +1,6 @@
 <?php 
 include('koneksi.php');
-$sql=mysql_query('select * from trx_detail');
+$sql=mysqli_query($con,'select * from trx_detail');
 
  ?>
  <table border="1">
@@ -11,7 +11,7 @@ $sql=mysql_query('select * from trx_detail');
  		<td>qty</td>
  	</tr>
  	<?php $no=1;
- 	while ($data=mysql_fetch_array($sql)) {
+ 	while ($data=mysqli_fetch_array($sql)) {
  	 ?>
  	 <tr>
  	 <td><?php echo $no++; ?></td>

@@ -5,14 +5,14 @@ $query_edit="update suplier set nama='".$_POST['']."',
 alamat='".$_POST['']."',
 no_telpon='".$_POST['']."',
 status='".$_POST."' where id_suplier='"$_POST['']"'";
-$excecute=mysql_query($query_edit)
+$excecute=mysqli_query($con,$query_edit);
 if ($excecute) {
 	header('location:view_suplier.php');
 }else{
-	echo mysql_error();
+	echo mysqli_error();
  }
 }
-$select_data=mysql_query("select * from suplier where id_suplier='".$_GET['']."'");
-$data=mysql_fetch_array($select_data);
+$select_data=mysqli_query($con,"select * from suplier where id_suplier='".$_GET['']."'");
+$data=mysqli_fetch_array($select_data);
 
  ?>

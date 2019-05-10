@@ -3,8 +3,8 @@ session_start();
 include ('koneksi.php');
 include('header.php');
 
-$q=mysql_query("select * from transaksi_masuk where id_transaksi='".$_GET['id_detail']."'");
-$f=mysql_fetch_array($q);
+$q=mysqli_query($con,"select * from transaksi_masuk where id_transaksi='".$_GET['id_detail']."'");
+$f=mysqli_fetch_array($q);
 ?>
 
 <div class="box">
@@ -23,7 +23,7 @@ $f=mysql_fetch_array($q);
 
 			<tr>
 				<th>Suplier</th>
-				<?php $qcus=mysql_fetch_array(mysql_query('SELECT * FROM suplier WHERE id_suplier="'.$f['id_suplier'].'"')) ?>
+				<?php $qcus=mysqli_fetch_array(mysqli_query($con,'SELECT * FROM suplier WHERE id_suplier="'.$f['id_suplier'].'"')) ?>
 				<td><?php echo $qcus['nama'];?>
 			</td>
 		</tr>
@@ -43,15 +43,15 @@ $f=mysql_fetch_array($q);
 	</tr>
 	<?php  
 	
-	$querydetail=mysql_query('select * from transaksi_detail_masuk where id_transaksi_masuk="'.$f['id_transaksi'].'"');
+	$querydetail=mysqli_query($con,'select * from transaksi_detail_masuk where id_transaksi_masuk="'.$f['id_transaksi'].'"');
 	$i=0;
-	while($data=mysql_fetch_array($querydetail)) { 
+	while($data=mysqli_fetch_array($querydetail)) { 
 		$i++;
 		?>
 		<td><input type="hidden" name="idtransaksidetail[]" value="<?php echo $data['id_transaksi_detail_masuk']?>"></td>
 		<tr>
-			<td><?php $cs=mysql_query("select * from barang where id_barang='".$data['id_barang']."'");
-			while ($databarang=mysql_fetch_array($cs)) { echo $databarang['nama_barang'];}?>
+			<td><?php $cs=mysqli_query($con,"select * from barang where id_barang='".$data['id_barang']."'");
+			while ($databarang=mysqli_fetch_array($cs)) { echo $databarang['nama_barang'];}?>
 		</td>
 		<td><?php echo $data['qty'] ?></td>
 		<td><?php echo $data['harga_beli'] ?></td>

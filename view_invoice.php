@@ -3,8 +3,8 @@ session_start();
 include ('koneksi.php');
 include('header.php');
 
-$q=mysql_query("select * from transaksi_keluar where id_transaksi_keluar='".$_GET['id_detail']."'");
-$f=mysql_fetch_array($q);
+$q=mysqli_query($con,"select * from transaksi_keluar where id_transaksi_keluar='".$_GET['id_detail']."'");
+$f=mysqli_fetch_array($q);
 ?>
 
 <div class="box">
@@ -32,7 +32,7 @@ $f=mysql_fetch_array($q);
 			<tr>
 				<th>Customer</th>
 				<td><?php
-				$querycustomer=mysql_fetch_array(mysql_query('SELECT * FROM customer WHERE id_customer="'.$f['id_customer'].'"'));
+				$querycustomer=mysqli_fetch_array(mysqli_query($con,'SELECT * FROM customer WHERE id_customer="'.$f['id_customer'].'"'));
 				 echo $querycustomer['nama'];
 				?>
 			</td>
@@ -54,16 +54,16 @@ $f=mysql_fetch_array($q);
 	</tr>
 	<?php  
 	
-	$querydetail=mysql_query('select * from transaksi_detail_keluar where id_transaksi_keluar="'.$f['id_transaksi_keluar'].'"');
+	$querydetail=mysqli_query($con,'select * from transaksi_detail_keluar where id_transaksi_keluar="'.$f['id_transaksi_keluar'].'"');
 	$i=0;
-	while($data=mysql_fetch_array($querydetail)) { 
+	while($data=mysqli_fetch_array($querydetail)) { 
 		$i++;
 
 		?>
 		<td><input type="hidden" name="idtransaksidetail[]" value="<?php echo $data['id_transaksi_detail_keluar']?>"></td>
 		<tr>
-			<td><?php $cs=mysql_query("select * from barang where id_barang='".$data['id_barang']."'");
-			while ($databarang=mysql_fetch_array($cs)) { echo $databarang['nama_barang'];}?>
+			<td><?php $cs=mysqli_query($con,"select * from barang where id_barang='".$data['id_barang']."'");
+			while ($databarang=mysqli_fetch_array($cs)) { echo $databarang['nama_barang'];}?>
 		</td>
 		<td><?php echo $data['qty'] ?></td>
 		<td><?php echo $data['harga_jual'] ?></td>

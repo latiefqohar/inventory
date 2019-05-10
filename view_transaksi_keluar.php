@@ -2,7 +2,7 @@
 session_start();
 include('koneksi.php');
 include ('header.php');
-$sql=mysql_query('select * from transaksi_keluar');
+$sql=mysqli_query($con,'select * from transaksi_keluar');
 
  ?>
  <table border="1" class="table table-bordered">
@@ -14,7 +14,7 @@ $sql=mysql_query('select * from transaksi_keluar');
  		<th>id customer</th>
  	</tr>
  	<?php $no=1;
- 	while ($data=mysql_fetch_array($sql)) {
+ 	while ($data=mysqli_fetch_array($sql)) {
  	 ?>
  	 <tr>
  	 <td><?php echo $no++; ?></td>

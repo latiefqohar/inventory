@@ -23,9 +23,9 @@ include('header.php');
 	</form>
 	<?php 
 	if (isset($_GET['cari'])){
-	$query=mysql_query("select * from transaksi_keluar where kode_transaksi LIKE '%".$_GET['fcari']."%' ");
+	$query=mysqli_query($con,"select * from transaksi_keluar where kode_transaksi LIKE '%".$_GET['fcari']."%' ");
 	}else{
-	$query=mysql_query("select * from transaksi_keluar ");	
+	$query=mysqli_query($con,"select * from transaksi_keluar ");	
 	}
 	?>
 	<tr>
@@ -37,17 +37,18 @@ include('header.php');
 		<th>status transaksi</th>
 		<th>status user</th>
 		<th colspan="3">Action</th>
+		<th colspan="2">Invoice</th>
 	</tr>
 	<?php 
-	while($data=mysql_fetch_array($query)){?>
+	while($data=mysqli_fetch_array($query)){?>
 	<tr>
 		<td><?php echo $data['kode_transaksi'];?></td>
 		<td><?php echo $data['tanggal_transaksi']; ?></td>
 		<td><?php echo $data['grand_total']; ?></td>
 		<td><?php echo $data['qty_total']; ?></td>
 		<?php $idcus=$data['id_customer'];
-		$query_cus=mysql_query("select * from customer where id_customer='".$idcus."'");
-		$hasilcus=mysql_fetch_array($query_cus);?>
+		$query_cus=mysqli_query($con,"select * from customer where id_customer='".$idcus."'");
+		$hasilcus=mysqli_fetch_array($query_cus);?>
 		<td><?php echo $hasilcus['nama']; ?></td>
 		<td><?php if($data['status_transaksi']=='0'){
 			echo "create transaksi";

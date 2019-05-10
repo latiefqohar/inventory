@@ -3,7 +3,7 @@ session_start();
 include ('koneksi.php');
 include ('header.php');
 
-$query=mysql_fetch_array(mysql_query("SELECT sum(grand_total)-sum(bayar) as hutang,
+$query=mysqli_fetch_array(mysqli_query($con,"SELECT sum(grand_total)-sum(bayar) as hutang,
 (select sum(grand_total)-sum(bayar) from transaksi_masuk ) as piutang
 from transaksi_keluar"));
 

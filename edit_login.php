@@ -2,8 +2,8 @@
 include ('koneksi.php');
 
 if (isset($_POST['edit'])) {
-$cek_password=mysql_query("select * from login where id_login='".$_POST['id_login']."'");
-$validasi=mysql_fetch_array($cek_password);
+$cek_password=mysqli_query($con,"select * from login where id_login='".$_POST['id_login']."'");
+$validasi=mysqli_fetch_array($cek_password);
 $old_password=$validasi['password'];
 $new_password=$_POST['password'];
 if ($old_password==$new_password) {
@@ -12,7 +12,7 @@ if ($old_password==$new_password) {
 	$password=md5($new_password);
 }
 
-$query_edit=mysql_query("update login set username='".$_POST['username']."',
+$query_edit=mysqli_query($con,"update login set username='".$_POST['username']."',
 	password='".$password."',
 	level='".$_POST['level']."',
 	status='".$_POST['status']."' where id_login='".$_POST['id_login']."'");
@@ -20,11 +20,11 @@ $query_edit=mysql_query("update login set username='".$_POST['username']."',
 if ($query_edit) {
 	header('location:view_login.php');
 }else{
-	echo mysql_error();
+	echo mysqli_error();
 }
 }
-$cari_data=mysql_query("select * from login where id_login='".$_GET['id_login']."'");
-$hasil=mysql_fetch_array($cari_data);
+$cari_data=mysqli_query($con,"select * from login where id_login='".$_GET['id_login']."'");
+$hasil=mysqli_fetch_array($cari_data);
 $hasilpass=$hasil['password'];
 
  ?>

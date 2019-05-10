@@ -3,7 +3,7 @@ session_start();
 include('koneksi.php');
 
 if (isset($_POST['edit'])) {
-	$query_edit=mysql_query("update transaksi_masuk set surat_jalan='".$_POST['surat_jalan']."',
+	$query_edit=mysqli_query($con,"update transaksi_masuk set surat_jalan='".$_POST['surat_jalan']."',
 		invoice='".$_POST['invoice']."', Tanggal_terima=CURDATE(), status_user=3 where id_transaksi='".$_POST['id']."'");
 
 	if ($query_edit) {
@@ -14,19 +14,19 @@ if (isset($_POST['edit'])) {
 		for($i=0;$i<count($data_barang); $i++){
 			$barang=$data_barang[$i];
 			$qty=$data_qty[$i];
-			$query_isert_qty=mysql_query("update barang SET qty=qty+" . $qty. " WHERE id_barang='" . $barang . "'");
+			$query_isert_qty=mysqli_query($con,"update barang SET qty=qty+" . $qty. " WHERE id_barang='" . $barang . "'");
 			
 		}
 		header('location:view_barang_datang.php');
 	}else{
-		echo mysql_error();
+		echo mysqli_error();
 	}
 
 }
 include('header.php');
 
-$q=mysql_query("select * from transaksi_masuk where id_transaksi='".$_GET['idpr']."'");
-$f=mysql_fetch_array($q);
+$q=mysqli_query($con,"select * from transaksi_masuk where id_transaksi='".$_GET['idpr']."'");
+$f=mysqli_fetch_array($q);
 
 
 ?>
@@ -54,7 +54,7 @@ $f=mysql_fetch_array($q);
 		
 		<tr>
 			<td>Suplier</td>
-			<?php $cs=mysql_fetch_array(mysql_query("select * from suplier where id_suplier='".$f['id_suplier']."'")) ;?>
+			<?php $cs=mysqli_fetch_array(mysqli_query($con,"select * from suplier where id_suplier='".$f['id_suplier']."'")) ;?>
 			<td><input type="text" name="suplier" class="form-control" value="<?php echo $cs['nama']; ?>">
 				
 			
@@ -77,9 +77,9 @@ $f=mysql_fetch_array($q);
 	</tr>
 	<?php  
 	
-	$querydetail=mysql_query('select * from transaksi_detail_masuk where id_transaksi_masuk="'.$f['id_transaksi'].'"');
+	$querydetail=mysqli_query($con,'select * from transaksi_detail_masuk where id_transaksi_masuk="'.$f['id_transaksi'].'"');
 	$i=0;
-	while($data=mysql_fetch_array($querydetail)) { 
+	while($data=mysqli_fetch_array($querydetail)) { 
 		$i++;
 		
 		?>
@@ -87,7 +87,7 @@ $f=mysql_fetch_array($q);
 		<td><input type="hidden" name="id_barang[]" value="<?php echo $data['id_barang']; ?>"></td>
 		<tr>
 
-			<?php $cs=mysql_fetch_array(mysql_query("select * from barang where id_barang='".$data['id_barang']."'"));?>
+			<?php $cs=mysqli_fetch_array(mysqli_query($con,"select * from barang where id_barang='".$data['id_barang']."'"));?>
 			<td><input type="text" name="nama_barang[]" class="form-control" value="<?php echo $cs['nama_barang']; ?>">			</td>
 			<td><input type="text"  name="qty[]" class="form-control" value='<?php echo $data['qty'] ?>'></td>
 			<td><input type="text" name="harga_beli[]" class="form-control" value='<?php echo $data['harga_beli'] ?>'></td>

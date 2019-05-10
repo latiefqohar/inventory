@@ -2,8 +2,8 @@
 include ('koneksi.php');
 
 IF(isset($_POST['save'])){
-	$cari=mysql_query("select * from barang where kode_barang='".$_POST['kodebarang']."'");
-	$hasilcari=mysql_fetch_array($cari);
+	$cari=mysqli_query($con,"select * from barang where kode_barang='".$_POST['kodebarang']."'");
+	$hasilcari=mysqli_fetch_array($cari);
 	if ($hasilcari) {
 		echo ("<script type='text/javascript'>
 			alert('kode barang sudah ada');document.location='javascript:history.back(1)';</script>");		
@@ -12,12 +12,12 @@ IF(isset($_POST['save'])){
 		'".$_POST['nama_barang']."',
 		'".$_POST['qantity']."',
 		'".$_POST['harga']."')";
-		$proses=mysql_query($query_insert);
+		$proses=mysqli_query($con,$query_insert);
 
 		if($proses){
 			header('location:view_barang.php');
 		}else{
-		echo mysql_error();
+		echo mysqli_error();
 		}
 	}
 }

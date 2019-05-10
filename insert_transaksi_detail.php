@@ -5,11 +5,11 @@ if (isset($_POST['save'])) {
 	'".$_POST['fidtransaksimasuk']."',
 	'".$_POST['fidbarang']."',
 	'".$_POST['fqty']."')";
-	$eksekusi=mysql_query($sql_query);
+	$eksekusi=mysqli_query($con,$sql_query);
 	if ($eksekusi) {
 		header('location:view_transaksi_detail.php');
 	}else
-	echo mysql_error();
+	echo mysqli_error();
 }
  ?>
  <form method="post">

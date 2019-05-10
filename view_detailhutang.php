@@ -3,7 +3,7 @@ session_start();
 include ('koneksi.php');
 include ('header.php');
 
-$query=mysql_query("SELECT * from transaksi_keluar where id_customer='".$_GET['id_customer']."'");
+$query=mysqli_query($con,"SELECT * from transaksi_keluar where id_customer='".$_GET['id_customer']."'");
 
 
 
@@ -31,11 +31,11 @@ $query=mysql_query("SELECT * from transaksi_keluar where id_customer='".$_GET['i
  	$no=1 ;
  	$a=0;
  	$b=0;
- 	while ($data=mysql_fetch_array($query)) { ?>
+ 	while ($data=mysqli_fetch_array($query)) { ?>
  		<tr>
  			<td><?php echo $no++ ?></td>
  			<td><?php
- 			$qsup=mysql_fetch_array(mysql_query("SELECT * from customer where id_customer='".$data['id_customer']."'"));
+ 			$qsup=mysqli_fetch_array(mysqli_query($con,"SELECT * from customer where id_customer='".$data['id_customer']."'"));
  			 
  			echo $qsup['nama'];
  			 ?></td>
@@ -63,4 +63,4 @@ $query=mysql_query("SELECT * from transaksi_keluar where id_customer='".$_GET['i
  </table>
 
 
- <?php include ('footer.php'); ?>
+ <?php include ('footer.php'); ?>ss

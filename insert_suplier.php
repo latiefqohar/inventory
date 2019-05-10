@@ -6,11 +6,11 @@ if (isset($_POST['save'])) {
 	'".$_POST['alamat']."',
 	'".$_POST['no_telpon']."',
 	'".$_POST['status']."')";
-	$proses=mysql_query($query_insert);
+	$proses=mysqli_query($con,$query_insert);
 	if($proses){
 		header('location:view_suplier.php');
 	}else{
-		echo mysql_error();
+		echo mysqli_error();
 	}
 
 

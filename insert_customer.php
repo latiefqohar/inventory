@@ -6,12 +6,12 @@ $query_insert="insert into customer(nama,alamat,no_hp,status)values(
 '".$_POST['falamat']."',
 '".$_POST['fnohp']."',
 '".$_POST['fstatus']."')";
-$proses=mysql_query($query_insert);
+$proses=mysqli_query($con,$query_insert);
 
 if($proses){
 	header('location:view_customer.php');
 }else
-echo mysql_error();
+echo mysqli_error();
 }
 
  ?>

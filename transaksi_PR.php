@@ -3,11 +3,11 @@ include('koneksi.php');
 session_start();
 if(isset($_POST['save'])){
 
-$query_header=mysql_query("insert into transaksi_masuk (id_suplier,kode_transaksi,tgl_transaksi)
+$query_header=mysqli_query($con,"insert into transaksi_masuk (id_suplier,kode_transaksi,tgl_transaksi)
 values('".$_POST['id_suplier']."',
 '".$_POST['kode_transaksi']."',
 '".$_POST['tgl_transaksi']."')");
-$id_transaksi=mysql_insert_id();
+$id_transaksi=mysqli_insert_id();
 if($query_header){
 	$data_barang=$_POST['id_barang'];
 	//var_dump($_POST);
@@ -26,19 +26,19 @@ if($query_header){
 			$subtotal=$data_subtotal[$i];
 			$query_detail="insert into transaksi_detail_masuk(id_transaksi_masuk,id_barang,qty,harga_beli,subtotal)
 			values('$id_transaksi','$barang','$qty','$harga_beli','$subtotal')";
-			$test=mysql_query($query_detail);
+			$test=mysqli_query($con,$query_detail);
 			$total_qty+=$qty;
 			// $b=mysql_query("update barang SET qty=qty+" . $qty. " WHERE id_barang='" . $barang . "'");
 			if($test){
 				header('location:view_transaksi_masuk.php');
 			}else{
-				echo mysql_error();
+				echo mysqli_error();
 			}
 		}
 	}
-	$q=mysql_query("update transaksi_masuk set total='$total_qty', grand_total='".$_POST['grandtotal']."' where id_transaksi='$id_transaksi'");
+	$q=mysqli_query($con,"update transaksi_masuk set total='$total_qty', grand_total='".$_POST['grandtotal']."' where id_transaksi='$id_transaksi'");
 }else{
-	ECHO mysql_error();
+	ECHO mysqli_error();
 }
 
 }
@@ -56,8 +56,8 @@ include('header.php');
 			<td>Suplier</td>
 			<td><select name="id_suplier" class="form-control">
 			<option value="">--pilih Suplier -- </option>
-			<?php $cs=mysql_query("select * from suplier");
-				while ($data=mysql_fetch_array($cs)) { ?>
+			<?php $cs=mysqli_query($con,"select * from suplier");
+				while ($data=mysqli_fetch_array($cs)) { ?>
 				<option value="<?php echo $data['id_suplier'];?>"><?php echo $data['nama'];?></option>
 				<?php }?>
 			</select>
@@ -71,6 +71,9 @@ include('header.php');
 </table>
 </br>
 <table border="1" class="table table-bordered">
+<?php
+ for ($i=0; $i < 5; $i++) { ?>
+
 	<tr>
 		<td>Nama Barang</td>
 		<td>Qty</td>
@@ -78,13 +81,12 @@ include('header.php');
 		<td>Subtotal</td>
 		
 	</tr>
-	<?php
-	for($i=1; $i <= 6; $i++) { ?>
+	
 <tr>
 	<td><select id='id_barang_<?php echo $i;?>' name="id_barang[]" class="form-control">
 	<option value="">--pilih Barang -- </option>
-			<?php $cs=mysql_query("select * from barang");
-				while ($data=mysql_fetch_array($cs)) { ?>
+			<?php $cs=mysqli_query($con,"select * from barang");
+				while ($data=mysqli_fetch_array($cs)) { ?>
 				<option value="<?php echo $data['id_barang'];?>"><?php echo $data['nama_barang'];?></option>
 				<?php }?>
 			</select></td>
@@ -138,7 +140,7 @@ include('header.php');
 	<?php 
 	
 	
-	
+
 	} ?>
 	<tr>
 		<td>Total</td>

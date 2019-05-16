@@ -6,7 +6,6 @@ if (isset($_POST['submit'])) {
 
 $sisa_bayar=$_POST['sisa_bayar'];
 $pembayaran=$_POST['pembayaran'];
-
 	if ($pembayaran>$sisa_bayar) {
 		echo ("<script type='text/javascript'>
 			alert('anda lebih bayar');document.location='javascript:history.back(1)';</script>");
@@ -21,7 +20,7 @@ $pembayaran=$_POST['pembayaran'];
 			}
 			header('location:view_transaksi_masuk.php');
 		}else{
-			echo mysqli_error();
+			echo mysqli_error($con);
 		}
 		
 

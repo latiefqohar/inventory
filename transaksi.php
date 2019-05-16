@@ -5,7 +5,7 @@ if (isset($_POST['save'])) {
 $queryheader=mysql_query("insert into transaksi_keluar(id_customer, kode_transaksi, tanggal_transaksi) value ('".$_POST['id_customer']."',
 '".$_POST['kode_transaksi']."',
 '".$_POST['tgl_transaksi']."')");
-$id_transaksi=mysql_insert_id();
+$id_transaksi=mysql_insert_id($con);
 if ($queryheader) {
 	$data_barang=$_POST['id_barang'];
 	$data_qty=$_POST['qty'];

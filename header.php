@@ -402,7 +402,7 @@
             <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
           </ul>
         </li> -->
-        <li class="treeview">
+        <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-edit"></i> <span>Forms</span>
             <span class="pull-right-container">
@@ -414,29 +414,43 @@
             <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
             <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
           </ul>
-        </li>
+        </li> -->
 
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-book"></i> <span>Transaksi</span>
+            <i class="fa fa-book"></i> <span>Transaksi Masuk</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <!-- <li><a href="view_transaksi.php"><i class="fa fa-circle-o"></i>Data Transaksi</a></li> -->
+            <!-- <li><a href="view_transaksi_keluar.php"><i class="fa fa-circle-o"></i>Data Transaksi Keluar</a></li>
+            <li><a href="view_transaksi_masuk.php"><i class="fa fa-circle-o"></i>Data Transaksi Masuk</a></li> -->
+            <li><a href="view_transaksi_masuk.php"><i class="fa fa-circle-o"></i>view Transaksi Masuk</a></li>
+            <li><a href="view_approve_pr.php"><i class="fa fa-circle-o"></i>Approval PR</a></li>
+            
+            <!-- <li><a href="approval_transaksi.php"><i class="fa fa-circle-o"></i>Approval</a></li> -->
+            <li><a href="view_nopr.php"><i class="fa fa-circle-o"></i>Tunggu PO</a></li>
+            <li><a href="view_barang_datang.php"><i class="fa fa-circle-o"></i>input barang datang</a></li>
+            <li><a href="view_invoice_barangmasuk.php"><i class="fa fa-circle-o"></i>View Invoice barang masuk</a></li>
+            <li><a href="view_bayar_invoicemasuk.php"><i class="fa fa-circle-o"></i>Bayar Invoice barang masuk</a></li>
+           
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-book"></i> <span>Transaksi Keluar</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="view_transaksi.php"><i class="fa fa-circle-o"></i>Data Transaksi</a></li>
-            <!-- <li><a href="view_transaksi_keluar.php"><i class="fa fa-circle-o"></i>Data Transaksi Keluar</a></li>
-            <li><a href="view_transaksi_masuk.php"><i class="fa fa-circle-o"></i>Data Transaksi Masuk</a></li> -->
-            <li><a href="outstanding_transaksi.php"><i class="fa fa-circle-o"></i>Outstanding</a></li>
             <li><a href="approval_transaksi.php"><i class="fa fa-circle-o"></i>Approval</a></li>
-            <li><a href="view_transaksi_masuk.php"><i class="fa fa-circle-o"></i>view Transaksi Masuk</a></li>
-            <li><a href="view_approve_pr.php"><i class="fa fa-circle-o"></i>Approval PR</a></li>
-            <li><a href="view_nopr.php"><i class="fa fa-circle-o"></i>Tunggu PO</a></li>
-            <li><a href="view_barang_datang.php"><i class="fa fa-circle-o"></i>input barang datang</a></li>
-            <li><a href="view_invoice_barangmasuk.php"><i class="fa fa-circle-o"></i>View Invoice barang masuk</a></li>
-            <li><a href="view_bayar_invoicemasuk.php"><i class="fa fa-circle-o"></i>Bayar Invoice barang masuk</a></li>
-            <li><a href="view_hutangpiutang.php"><i class="fa fa-circle-o"></i>laporan hutang piutang</a></li>
+            <li><a href="outstanding_transaksi.php"><i class="fa fa-circle-o"></i>Outstanding</a></li>
           </ul>
         </li>
         <!-- <li class="treeview">
@@ -481,13 +495,27 @@
             <li><a href="view_barang.php"><i class="fa fa-circle-o"></i>Data Barang</a></li>
             <li><a href="view_login.php"><i class="fa fa-circle-o"></i>Data Login</a></li>
             <li><a href="view_customer.php"><i class="fa fa-circle-o"></i>Data Customer</a></li>
+
             
-            <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
+            
+            <!-- <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
             <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
             <li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
             <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
             <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
+            <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li> -->
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-folder"></i> <span>Laporan</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          <li><a href="view_hutangpiutang.php"><i class="fa fa-circle-o"></i>laporan hutang piutang</a></li>
           </ul>
         </li>
         <!-- <li class="treeview">

@@ -7,7 +7,7 @@ $query_header=mysqli_query($con,"insert into transaksi_masuk (id_suplier,kode_tr
 values('".$_POST['id_suplier']."',
 '".$_POST['kode_transaksi']."',
 '".$_POST['tgl_transaksi']."')");
-$id_transaksi=mysqli_insert_id();
+$id_transaksi=mysqli_insert_id($con);
 if($query_header){
 	$data_barang=$_POST['id_barang'];
 	//var_dump($_POST);
@@ -71,8 +71,7 @@ include('header.php');
 </table>
 </br>
 <table border="1" class="table table-bordered">
-<?php
- for ($i=0; $i < 5; $i++) { ?>
+
 
 	<tr>
 		<td>Nama Barang</td>
@@ -81,7 +80,8 @@ include('header.php');
 		<td>Subtotal</td>
 		
 	</tr>
-	
+	<?php
+ for ($i=0; $i < 5; $i++) { ?>
 <tr>
 	<td><select id='id_barang_<?php echo $i;?>' name="id_barang[]" class="form-control">
 	<option value="">--pilih Barang -- </option>

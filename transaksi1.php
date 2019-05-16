@@ -8,7 +8,7 @@ $query_header=mysqli_query($con,"insert into transaksi_keluar (id_customer,kode_
 values('".$_POST['id_customer']."',
 '".$_POST['kode_transaksi']."',
 '".$_POST['tgl_transaksi']."')");
-$id_transaksi=mysqli_insert_id();
+$id_transaksi=mysqli_insert_id($con);
 if($query_header){
 	$data_barang=$_POST['id_barang'];
 	//var_dump($_POST);
@@ -27,6 +27,7 @@ if($query_header){
 			$subtotal=$data_subtotal[$i];
 			$query_detail="insert into transaksi_detail_keluar(id_transaksi_keluar,id_barang,qty,harga_jual,subtotal)
 			values('$id_transaksi','$barang','$qty','$harga_jual','$subtotal')";
+			// var_dump($query_detail);die;
 			$test=mysqli_query($con,$query_detail);
 			$total_qty+=$qty;
 			$b=mysqli_query($con,"update barang SET qty=qty-" . $qty. " WHERE id_barang='" . $barang . "'");

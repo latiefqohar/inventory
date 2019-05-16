@@ -1,7 +1,7 @@
 <?php 
 include ('koneksi.php');
 $id_barang=$_GET['id_transaksi'];
-$query=mysqli_query("SELECT suplier.nama, transaksi_masuk.*
+$query=mysqli_query($con,"SELECT suplier.nama, transaksi_masuk.*
  from 
  transaksi_masuk INNER JOIN suplier ON transaksi_masuk.id_suplier = suplier.id_suplier
  where
